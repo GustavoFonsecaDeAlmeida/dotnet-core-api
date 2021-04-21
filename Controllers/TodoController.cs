@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -112,6 +113,14 @@ namespace TodoApi.Controllers
         private bool TodoItemExists(long id)
         {
             return _context.TodoItems.Any(e => e.Id == id);
+        }
+
+        // GET: api/Todo/ping
+        [HttpGet("ping")]
+        public ActionResult<string> Pong()
+        {
+            
+            return $"Pong {DateTime.UtcNow}";
         }
     }
 }
